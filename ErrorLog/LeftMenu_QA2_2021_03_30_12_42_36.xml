@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?><errorlog><exception><file>LeftMenu_QA2</file><time>2021-03-30 12:42:36</time><description>Could not find element by: By.LinkText: Access JFKU Resources, or: By.LinkText: Access JFKU Resources, or: By.LinkText: Access JFKU Resources, or: By.LinkText: Access JFKU Resources, or: By.LinkText: Access JFKU Resources, or: By.LinkText: Access JFKU Resources, or: By.LinkText: Access JFKU Resources, or: By.LinkText: Access JFKU Resources, or: By.LinkText: Access JFKU Resources</description><method>OpenQA.Selenium.IWebElement LocateElement(System.Collections.Generic.IEnumerable`1[OpenQA.Selenium.By])</method><trace>   at SeleniumExtras.PageObjects.RetryingElementLocator.LocateElement(IEnumerable`1 bys)
+   at SeleniumExtras.PageObjects.WebElementProxy.get_Element()
+   at SeleniumExtras.PageObjects.WebElementProxy.Invoke(IMessage msg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData&amp; msgData, Int32 type)
+   at OpenQA.Selenium.IWebElement.Click()
+   at LibraryAutomation.PageObjects.Library_LeftMenu_Objects.Clicking_AccessJFKUResourcesLink() in C:\Users\amalathkar\work\LibraryAutomation\PageObjects\Library_LeftMenu_Objects.cs:line 254
+   at LibraryAutomation.LibraryTest.LeftMenu() in C:\Users\amalathkar\work\LibraryAutomation\Test cases\LibraryTest.cs:line 345</trace></exception></errorlog>

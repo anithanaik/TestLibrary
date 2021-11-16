@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?><errorlog><exception><file>Clicking_TopMenu_QA2</file><time>2021-03-30 12:39:32</time><description>  Expected string length 30 but was 26. Strings differ at index 26.
+  Expected: "https://ncu.libguides.com/?b=s"
+  But was:  "https://ncu.libguides.com/"
+  -------------------------------------^
+</description><method>Void ReportFailure(System.String)</method><trace>   at NUnit.Framework.Assert.ReportFailure(String message) in D:\a\1\s\src\NUnitFramework\framework\Assert.cs:line 394
+   at NUnit.Framework.Assert.ReportFailure(ConstraintResult result, String message, Object[] args) in D:\a\1\s\src\NUnitFramework\framework\Assert.cs:line 382
+   at NUnit.Framework.Assert.That[TActual](TActual actual, IResolveConstraint expression, String message, Object[] args) in D:\a\1\s\src\NUnitFramework\framework\Assert.That.cs:line 240
+   at NUnit.Framework.Assert.AreEqual(Object expected, Object actual) in D:\a\1\s\src\NUnitFramework\framework\Assert.Equality.cs:line 128
+   at LibraryAutomation.LibraryTest.Clicking_TopMenu() in C:\Users\amalathkar\work\LibraryAutomation\Test cases\LibraryTest.cs:line 690</trace></exception></errorlog>
