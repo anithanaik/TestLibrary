@@ -684,11 +684,12 @@ namespace LibraryAutomation
                     Thread.Sleep(5000);
                     Thread.Sleep(1000);
                     driver.SwitchTo().Window(driver.WindowHandles.Last());
+                    PageServices.WaitForPageToCompletelyLoaded(driver, 90);
                     String PageUrlLibraryGuides = driver.Url;
                     String PageTitleLibraryGuides = driver.Title;
                     Thread.Sleep(5000);
-                    Assert.AreEqual("https://ncu.libguides.com/?b=s", PageUrlLibraryGuides);
-                    Assert.AreEqual("Guides By Subject - LibGuides at Northcentral University", PageTitleLibraryGuides);
+                    Assert.AreEqual("https://ncu.libguides.com/", PageUrlLibraryGuides);
+                    Assert.AreEqual("Guides BY SUBJECT - LibGuides at Northcentral University", PageTitleLibraryGuides);
                     driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
                     driver.SwitchTo().Window(driver.WindowHandles.First());
                     Console.WriteLine("Library Guides Success");
@@ -791,7 +792,7 @@ namespace LibraryAutomation
                     driver.SwitchTo().Window(driver.WindowHandles.Last());
                     String PageUrlLibraryEvents = driver.Url;
                     String PageTitleLibraryEvents = driver.Title;
-                    Assert.AreEqual("https://ncu.libcal.com/calendar/workshops/?cid=2938&t=d&d=0000-00-00&cal=2938&inc=0", PageUrlLibraryEvents);
+                    Assert.IsTrue(PageUrlLibraryEvents.Contains("https://ncu.libcal.com/calendar/workshops"));
                     Assert.AreEqual("NCU Library Events Calendar - LibCal - NCU Library", PageTitleLibraryEvents);
                     driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
                     driver.SwitchTo().Window(driver.WindowHandles.First());
@@ -806,8 +807,8 @@ namespace LibraryAutomation
                     driver.SwitchTo().Window(driver.WindowHandles.Last());
                     String PageUrlLibraryDisabilityServices = driver.Url;
                     String PageTitleLibraryDisabilityServices = driver.Title;
-                    Assert.AreEqual("https://ncu.libguides.com/about/librarydisabilityservices", PageUrlLibraryDisabilityServices);
-                    Assert.AreEqual("Library Disability Services - About Us - LibGuides at Northcentral University", PageTitleLibraryDisabilityServices);
+                    Assert.AreEqual("https://ncu.libguides.com/librarydisabilityservices", PageUrlLibraryDisabilityServices);
+                    Assert.AreEqual("Home - Library Disability Services - LibGuides at Northcentral University", PageTitleLibraryDisabilityServices);
                     driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
                     driver.SwitchTo().Window(driver.WindowHandles.First());
                     Console.WriteLine("Library Disabilities Services Success");
@@ -968,7 +969,7 @@ namespace LibraryAutomation
                 Thread.Sleep(3000);
                 String PageUrlSearching101 = driver.Url;
                 String PageTitleSearching101 = driver.Title;
-                Assert.AreEqual("https://www.youtube.com/watch?v=w4bFesEvYPM&feature=youtu.be", PageUrlSearching101);
+                Assert.IsTrue(PageUrlSearching101.Contains("https://www.youtube.com/watch?v=w4bFesEvYPM"));// &feature=youtu.be", PageUrlSearching101);
                 Assert.AreEqual("Searching 101 - YouTube", PageTitleSearching101);
                 driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
                 driver.SwitchTo().Window(driver.WindowHandles.First());
@@ -1187,7 +1188,7 @@ namespace LibraryAutomation
 
                 PageServices.WaitForPageToCompletelyLoaded(driver, 90);
                 string PageTitleFindaResourceTitlebeginswith = driver.Title;
-                Assert.AreEqual("NCU Library - Find a Resource", PageTitleFindaResourceTitlebeginswith);
+                Assert.AreEqual("EJP Search Results", PageTitleFindaResourceTitlebeginswith);
                 driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
                 driver.SwitchTo().Window(driver.WindowHandles.First());
                 Console.WriteLine(PageTitleFindaResourceTitlebeginswith);
@@ -1197,8 +1198,9 @@ namespace LibraryAutomation
                 MiddleMenuObjects.Clicking_SearchButtonInFindResource();
                 driver.SwitchTo().Window(driver.WindowHandles.Last());
                PageServices.WaitForPageToCompletelyLoaded(driver, 90);
+                Thread.Sleep(3000);
                 string PageTitleFindaResourceTitleequals = driver.Title;
-                Assert.AreEqual("NCU Library - Find a Resource", PageTitleFindaResourceTitleequals);
+                Assert.AreEqual("EJP Search Results", PageTitleFindaResourceTitleequals);
                 driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
                 driver.SwitchTo().Window(driver.WindowHandles.First());
                 Console.WriteLine("Find Resource2");
@@ -1207,8 +1209,9 @@ namespace LibraryAutomation
                 MiddleMenuObjects.Clicking_SearchButtonInFindResource();
                 driver.SwitchTo().Window(driver.WindowHandles.Last());
                 PageServices.WaitForPageToCompletelyLoaded(driver, 90);
+                Thread.Sleep(3000);
                 string PageTitleFindaResourceTitlecontainsallwords = driver.Title;
-                Assert.AreEqual("NCU Library - Find a Resource", PageTitleFindaResourceTitlecontainsallwords);
+                Assert.AreEqual("EJP Search Results", PageTitleFindaResourceTitlecontainsallwords);
                 driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
                 driver.SwitchTo().Window(driver.WindowHandles.First());
                 Console.WriteLine("Find Resource3");
@@ -1218,9 +1221,11 @@ namespace LibraryAutomation
                 MiddleMenuObjects.Enter_InTypeJournalOrBookTitleHere("9780306457296");
                 MiddleMenuObjects.Clicking_SearchButtonInFindResource();
                 driver.SwitchTo().Window(driver.WindowHandles.Last());
+
                 PageServices.WaitForPageToCompletelyLoaded(driver, 90);
+                Thread.Sleep(3000);
                 string PageTitleFindaResourceISSNequals = driver.Title;
-                Assert.AreEqual("NCU Library - Find a Resource", PageTitleFindaResourceISSNequals);
+                Assert.AreEqual("EJP Search Results", PageTitleFindaResourceISSNequals);
                 driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
                 driver.SwitchTo().Window(driver.WindowHandles.First());
                 Console.WriteLine("Find Resource4");
@@ -1228,6 +1233,7 @@ namespace LibraryAutomation
                 MiddleMenuObjects.Clicking_WhatisRoadrunnerSearch();
                 driver.SwitchTo().Window(driver.WindowHandles.Last());
                 PageServices.WaitForPageToCompletelyLoaded(driver, 90);
+                Thread.Sleep(3000);
                 string PageTitleWhatisRoadrunnerSearchInFindaResource = driver.Title;
                 Assert.AreEqual("What is Roadrunner Search? How do I use it? - Ask Us!", PageTitleWhatisRoadrunnerSearchInFindaResource);
                 driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
@@ -1249,7 +1255,7 @@ namespace LibraryAutomation
                 MiddleMenuObjects.dropdownVerifyingDefaultValueInGuideList();
                 Console.WriteLine("Guide End");
 
-
+                Thread.Sleep(3000);
 
 
 
@@ -1259,6 +1265,7 @@ namespace LibraryAutomation
                 //WebDriverExtensions.FindElement(driver, By.CssSelector("div.s-lg-widget-content>div>form > button"), 90).Click();
                 MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
                 driver.SwitchTo().Window(driver.WindowHandles.Last());
+                Thread.Sleep(3000);
                 string PageTitleOfAboutUs = driver.Title;
                 string PageURLOfAboutUs = driver.Url;
                 Assert.AreEqual("Home - About Us - LibGuides at Northcentral University", PageTitleOfAboutUs);
@@ -1273,6 +1280,7 @@ namespace LibraryAutomation
                 PageServices.WaitForPageToCompletelyLoaded(driver, 90);
                 MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
                 driver.SwitchTo().Window(driver.WindowHandles.Last());
+                Thread.Sleep(3000);
                 string PageTitleOfAccountingAdvancedAccounting = driver.Title;
                 string PageURLOfAccountingAdvancedAccounting = driver.Url;
                 Assert.AreEqual("Home - Accounting & Advanced Accounting - LibGuides at Northcentral University", PageTitleOfAccountingAdvancedAccounting);
@@ -1603,85 +1611,85 @@ namespace LibraryAutomation
                 Console.WriteLine("Data Science");
 
                 MiddleMenuObjects.switchingtoiFrameLibraryGuide();
-                MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("DIP9901 Course Guide");
-                PageServices.WaitForPageToCompletelyLoaded(driver, 90);
-                MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
-                driver.SwitchTo().Window(driver.WindowHandles.Last());
-                string PageTitleOfDIP9901CourseGuide = driver.Title;
-                string PageURLOfDIP9901CourseGuide = driver.Url;
-                Assert.AreEqual("Home - DIP9901 Course Guide - LibGuides at Northcentral University", PageTitleOfDIP9901CourseGuide);
-                Assert.AreEqual("https://ncu.libguides.com/dip9901", PageURLOfDIP9901CourseGuide);
-                driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
-                driver.SwitchTo().Window(driver.WindowHandles.First());
-                Console.WriteLine("DIP9901 Course Guide");
+                //MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("DIP9901 Course Guide");
+                //PageServices.WaitForPageToCompletelyLoaded(driver, 90);
+                //MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
+                //driver.SwitchTo().Window(driver.WindowHandles.Last());
+                //string PageTitleOfDIP9901CourseGuide = driver.Title;
+                //string PageURLOfDIP9901CourseGuide = driver.Url;
+                //Assert.AreEqual("Home - DIP9901 Course Guide - LibGuides at Northcentral University", PageTitleOfDIP9901CourseGuide);
+                //Assert.AreEqual("https://ncu.libguides.com/dip9901", PageURLOfDIP9901CourseGuide);
+                //driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
+                //driver.SwitchTo().Window(driver.WindowHandles.First());
+                //Console.WriteLine("DIP9901 Course Guide");
 
-                MiddleMenuObjects.switchingtoiFrameLibraryGuide();
-                MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("DIP9902 Course Guide");
-                PageServices.WaitForPageToCompletelyLoaded(driver, 90);
-                MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
-                driver.SwitchTo().Window(driver.WindowHandles.Last());
-                string PageTitleOfDIP9902CourseGuide = driver.Title;
-                string PageURLOfDIP9902CourseGuide = driver.Url;
-                Assert.AreEqual("Home - DIP9902 Course Guide - LibGuides at Northcentral University", PageTitleOfDIP9902CourseGuide);
-                Assert.AreEqual("https://ncu.libguides.com/dip9902", PageURLOfDIP9902CourseGuide);
-                driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
-                driver.SwitchTo().Window(driver.WindowHandles.First());
-                Console.WriteLine("DIP9902 Course Guide");
+                //MiddleMenuObjects.switchingtoiFrameLibraryGuide();
+                //MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("DIP9902 Course Guide");
+                //PageServices.WaitForPageToCompletelyLoaded(driver, 90);
+                //MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
+                //driver.SwitchTo().Window(driver.WindowHandles.Last());
+                //string PageTitleOfDIP9902CourseGuide = driver.Title;
+                //string PageURLOfDIP9902CourseGuide = driver.Url;
+                //Assert.AreEqual("Home - DIP9902 Course Guide - LibGuides at Northcentral University", PageTitleOfDIP9902CourseGuide);
+                //Assert.AreEqual("https://ncu.libguides.com/dip9902", PageURLOfDIP9902CourseGuide);
+                //driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
+                //driver.SwitchTo().Window(driver.WindowHandles.First());
+                //Console.WriteLine("DIP9902 Course Guide");
 
-                MiddleMenuObjects.switchingtoiFrameLibraryGuide();
-                MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("DIS9901 Course Guide");
-                PageServices.WaitForPageToCompletelyLoaded(driver, 90);
-                MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
-                driver.SwitchTo().Window(driver.WindowHandles.Last());
-                string PageTitleOfDIS9901CourseGuide = driver.Title;
-                string PageURLOfDIS9901CourseGuide = driver.Url;
-                Assert.AreEqual("Home - DIS9901 Course Guide - LibGuides at Northcentral University", PageTitleOfDIS9901CourseGuide);
-                Assert.AreEqual("https://ncu.libguides.com/dis9901", PageURLOfDIS9901CourseGuide);
-                driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
-                driver.SwitchTo().Window(driver.WindowHandles.First());
-                Console.WriteLine("DIS9901 Course Guide");
+                //MiddleMenuObjects.switchingtoiFrameLibraryGuide();
+                //MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("DIS9901 Course Guide");
+                //PageServices.WaitForPageToCompletelyLoaded(driver, 90);
+                //MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
+                //driver.SwitchTo().Window(driver.WindowHandles.Last());
+                //string PageTitleOfDIS9901CourseGuide = driver.Title;
+                //string PageURLOfDIS9901CourseGuide = driver.Url;
+                //Assert.AreEqual("Home - DIS9901 Course Guide - LibGuides at Northcentral University", PageTitleOfDIS9901CourseGuide);
+                //Assert.AreEqual("https://ncu.libguides.com/dis9901", PageURLOfDIS9901CourseGuide);
+                //driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
+                //driver.SwitchTo().Window(driver.WindowHandles.First());
+                //Console.WriteLine("DIS9901 Course Guide");
 
-                MiddleMenuObjects.switchingtoiFrameLibraryGuide();
-                MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("DIS9902 Course Guide");
-                PageServices.WaitForPageToCompletelyLoaded(driver, 90);
-                MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
-                driver.SwitchTo().Window(driver.WindowHandles.Last());
-                string PageTitleOfDIS9902CourseGuide = driver.Title;
-                string PageURLOfDIS9902CourseGuide = driver.Url;
-                Assert.AreEqual("Home - DIS9902 Course Guide - LibGuides at Northcentral University", PageTitleOfDIS9902CourseGuide);
-                Assert.AreEqual("https://ncu.libguides.com/dis9902", PageURLOfDIS9902CourseGuide);
-                driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
-                driver.SwitchTo().Window(driver.WindowHandles.First());
-                Console.WriteLine("DIS9902 Course Guide");
+                //MiddleMenuObjects.switchingtoiFrameLibraryGuide();
+                //MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("DIS9902 Course Guide");
+                //PageServices.WaitForPageToCompletelyLoaded(driver, 90);
+                //MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
+                //driver.SwitchTo().Window(driver.WindowHandles.Last());
+                //string PageTitleOfDIS9902CourseGuide = driver.Title;
+                //string PageURLOfDIS9902CourseGuide = driver.Url;
+                //Assert.AreEqual("Home - DIS9902 Course Guide - LibGuides at Northcentral University", PageTitleOfDIS9902CourseGuide);
+                //Assert.AreEqual("https://ncu.libguides.com/dis9902", PageURLOfDIS9902CourseGuide);
+                //driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
+                //driver.SwitchTo().Window(driver.WindowHandles.First());
+                //Console.WriteLine("DIS9902 Course Guide");
 
-                MiddleMenuObjects.switchingtoiFrameLibraryGuide();
-                MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("DIS9903 Course Guide");
-                PageServices.WaitForPageToCompletelyLoaded(driver, 90);
-                MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
-                driver.SwitchTo().Window(driver.WindowHandles.Last());
-                string PageTitleOfDIS9903CourseGuide = driver.Title;
-                string PageURLOfDIS9903CourseGuide = driver.Url;
-                Assert.AreEqual("Home - DIS9903 Course Guide - LibGuides at Northcentral University", PageTitleOfDIS9903CourseGuide);
-                Assert.AreEqual("https://ncu.libguides.com/dis9903", PageURLOfDIS9903CourseGuide);
-                driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
-                driver.SwitchTo().Window(driver.WindowHandles.First());
-                Console.WriteLine("DIS9903 Course Guide");
+                //MiddleMenuObjects.switchingtoiFrameLibraryGuide();
+                //MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("DIS9903 Course Guide");
+                //PageServices.WaitForPageToCompletelyLoaded(driver, 90);
+                //MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
+                //driver.SwitchTo().Window(driver.WindowHandles.Last());
+                //string PageTitleOfDIS9903CourseGuide = driver.Title;
+                //string PageURLOfDIS9903CourseGuide = driver.Url;
+                //Assert.AreEqual("Home - DIS9903 Course Guide - LibGuides at Northcentral University", PageTitleOfDIS9903CourseGuide);
+                //Assert.AreEqual("https://ncu.libguides.com/dis9903", PageURLOfDIS9903CourseGuide);
+                //driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
+                //driver.SwitchTo().Window(driver.WindowHandles.First());
+                //Console.WriteLine("DIS9903 Course Guide");
 
 
-                MiddleMenuObjects.switchingtoiFrameLibraryGuide();
-                MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("DIS9904 Course Guide");
-                PageServices.WaitForPageToCompletelyLoaded(driver, 90);
-                MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
-                driver.SwitchTo().Window(driver.WindowHandles.Last());
-                string PageTitleOfDIS9904CourseGuide = driver.Title;
-                string PageURLOfDIS9904CourseGuide = driver.Url;
-                Assert.AreEqual("Home - DIS9904 Course Guide - LibGuides at Northcentral University", PageTitleOfDIS9904CourseGuide);
-                Assert.AreEqual("https://ncu.libguides.com/dis9904", PageURLOfDIS9904CourseGuide);
-                driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
-                driver.SwitchTo().Window(driver.WindowHandles.First());
-                Console.WriteLine("DIS9904 Course Guide");
+                //MiddleMenuObjects.switchingtoiFrameLibraryGuide();
+                //MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("DIS9904 Course Guide");
+                //PageServices.WaitForPageToCompletelyLoaded(driver, 90);
+                //MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
+                //driver.SwitchTo().Window(driver.WindowHandles.Last());
+                //string PageTitleOfDIS9904CourseGuide = driver.Title;
+                //string PageURLOfDIS9904CourseGuide = driver.Url;
+                //Assert.AreEqual("Home - DIS9904 Course Guide - LibGuides at Northcentral University", PageTitleOfDIS9904CourseGuide);
+                //Assert.AreEqual("https://ncu.libguides.com/dis9904", PageURLOfDIS9904CourseGuide);
+                //driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
+                //driver.SwitchTo().Window(driver.WindowHandles.First());
+                //Console.WriteLine("DIS9904 Course Guide");
 
-                MiddleMenuObjects.switchingtoiFrameLibraryGuide();
+                //MiddleMenuObjects.switchingtoiFrameLibraryGuide();
                 MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("Disability Studies");
                 PageServices.WaitForPageToCompletelyLoaded(driver, 90);
                 MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
@@ -2018,19 +2026,19 @@ namespace LibraryAutomation
                 Console.WriteLine("Homeland Security");
 
                 MiddleMenuObjects.switchingtoiFrameLibraryGuide();
-                MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("Human Performance and Coaching");
-                PageServices.WaitForPageToCompletelyLoaded(driver, 90);
-                MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
-                driver.SwitchTo().Window(driver.WindowHandles.Last());
-                String PageTitleOfHumanPerformanceandCoaching = driver.Title;
-                String PageURLOfHumanPerformanceandCoaching = driver.Url;
-                Assert.AreEqual("Home - Human Performance and Coaching - LibGuides at Northcentral University", PageTitleOfHumanPerformanceandCoaching);
-                Assert.AreEqual("https://ncu.libguides.com/humanperformance", PageURLOfHumanPerformanceandCoaching);
-                driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
-                driver.SwitchTo().Window(driver.WindowHandles.First());
-                Console.WriteLine("Human Performance and Coaching");
+                //MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("Human Performance and Coaching");
+                //PageServices.WaitForPageToCompletelyLoaded(driver, 90);
+                //MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
+                //driver.SwitchTo().Window(driver.WindowHandles.Last());
+                //String PageTitleOfHumanPerformanceandCoaching = driver.Title;
+                //String PageURLOfHumanPerformanceandCoaching = driver.Url;
+                //Assert.AreEqual("Home - Human Performance and Coaching - LibGuides at Northcentral University", PageTitleOfHumanPerformanceandCoaching);
+                //Assert.AreEqual("https://ncu.libguides.com/humanperformance", PageURLOfHumanPerformanceandCoaching);
+                //driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
+                //driver.SwitchTo().Window(driver.WindowHandles.First());
+                //Console.WriteLine("Human Performance and Coaching");
 
-                MiddleMenuObjects.switchingtoiFrameLibraryGuide();
+                //MiddleMenuObjects.switchingtoiFrameLibraryGuide();
                 MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("Human Resources Management");
                 PageServices.WaitForPageToCompletelyLoaded(driver, 90);
                 MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
@@ -2204,14 +2212,14 @@ namespace LibraryAutomation
                 Console.WriteLine("International Students");
 
                 MiddleMenuObjects.switchingtoiFrameLibraryGuide();
-                MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("JFKU Museum Studies Program");
+                MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("JFK Law Library");
                 PageServices.WaitForPageToCompletelyLoaded(driver, 90);
                 MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
                 driver.SwitchTo().Window(driver.WindowHandles.Last());
                 String PageTitleOfJFKUMuseumStudiesProgram = driver.Title;
                 String PageURLOfJFKUMuseumStudiesProgram = driver.Url;
-                Assert.AreEqual("Museum reference - JFKU Museum Studies Program - LibGuides at Northcentral University", PageTitleOfJFKUMuseumStudiesProgram);
-                Assert.AreEqual("https://ncu.libguides.com/museum", PageURLOfJFKUMuseumStudiesProgram);
+                Assert.AreEqual("Home - JFK Law Library - LibGuides at Northcentral University", PageTitleOfJFKUMuseumStudiesProgram);
+                Assert.AreEqual("https://ncu.libguides.com/lawlibrary", PageURLOfJFKUMuseumStudiesProgram);
                 driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
                 driver.SwitchTo().Window(driver.WindowHandles.First());
                 Console.WriteLine("JFKU Museum Studies Program");
@@ -2724,9 +2732,10 @@ namespace LibraryAutomation
                 driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
                 driver.SwitchTo().Window(driver.WindowHandles.First());
                 Console.WriteLine("Research Consultations");
+                Thread.Sleep(3000);
 
                 MiddleMenuObjects.switchingtoiFrameLibraryGuide();
-                MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("Research Methods  & Design");
+                MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("Research Methods & Design");
                 PageServices.WaitForPageToCompletelyLoaded(driver, 90);
                 MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
                 driver.SwitchTo().Window(driver.WindowHandles.Last());
@@ -2940,20 +2949,20 @@ namespace LibraryAutomation
 
 
                 MiddleMenuObjects.switchingtoiFrameLibraryGuide();
-                MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("Training & Development");
-                PageServices.WaitForPageToCompletelyLoaded(driver, 90);
-                MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
-                driver.SwitchTo().Window(driver.WindowHandles.Last());
-                String PageTitleOfTrainingDevelopment = driver.Title;
-                String PageURLOfTrainingDevelopment = driver.Url;
-                Assert.AreEqual("Home - Training & Development - LibGuides at Northcentral University", PageTitleOfTrainingDevelopment);
-                Assert.AreEqual("https://ncu.libguides.com/trainingdevelopment", PageURLOfTrainingDevelopment);
-                driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
-                driver.SwitchTo().Window(driver.WindowHandles.First());
-                Console.WriteLine("Training & Development");
+                //MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("Training & Development");
+                //PageServices.WaitForPageToCompletelyLoaded(driver, 90);
+                //MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
+                //driver.SwitchTo().Window(driver.WindowHandles.Last());
+                //String PageTitleOfTrainingDevelopment = driver.Title;
+                //String PageURLOfTrainingDevelopment = driver.Url;
+                //Assert.AreEqual("Home - Training & Development - LibGuides at Northcentral University", PageTitleOfTrainingDevelopment);
+                //Assert.AreEqual("https://ncu.libguides.com/trainingdevelopment", PageURLOfTrainingDevelopment);
+                //driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
+                //driver.SwitchTo().Window(driver.WindowHandles.First());
+                //Console.WriteLine("Training & Development");
 
 
-                MiddleMenuObjects.switchingtoiFrameLibraryGuide();
+                //MiddleMenuObjects.switchingtoiFrameLibraryGuide();
                 MiddleMenuObjects.dropdownSelectvaluesFromSelectAGuide("Trauma and Disaster Relief");
                 PageServices.WaitForPageToCompletelyLoaded(driver, 90);
                 MiddleMenuObjects.Clicking_btnGoInLibraryGuide();
