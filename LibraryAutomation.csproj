@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\NUnit3TestAdapter.4.0.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('packages\NUnit3TestAdapter.4.0.0\build\net35\NUnit3TestAdapter.props')" />
+  <Import Project="packages\NUnit.3.13.2\build\NUnit.props" Condition="Exists('packages\NUnit.3.13.2\build\NUnit.props')" />
   <Import Project="packages\Microsoft.Extensions.Configuration.UserSecrets.3.1.7\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.props" Condition="Exists('packages\Microsoft.Extensions.Configuration.UserSecrets.3.1.7\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.props')" />
   <Import Project="packages\Microsoft.CodeAnalysis.Analyzers.3.3.0\build\Microsoft.CodeAnalysis.Analyzers.props" Condition="Exists('packages\Microsoft.CodeAnalysis.Analyzers.3.3.0\build\Microsoft.CodeAnalysis.Analyzers.props')" />
-  <Import Project="packages\NUnit3TestAdapter.3.17.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('packages\NUnit3TestAdapter.3.17.0\build\net35\NUnit3TestAdapter.props')" />
-  <Import Project="packages\NUnit.3.12.0\build\NUnit.props" Condition="Exists('packages\NUnit.3.12.0\build\NUnit.props')" />
   <Import Project="..\packages\NUnit3TestAdapter.3.13.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.13.0\build\net35\NUnit3TestAdapter.props')" />
   <Import Project="..\packages\NUnit.3.12.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -157,9 +157,8 @@
       <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework, Version=3.12.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>packages\NUnit.3.12.0\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="nunit.framework, Version=3.13.2.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>packages\NUnit.3.13.2\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="RazorEngine, Version=3.10.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
       <HintPath>packages\RazorEngine.3.10.0\lib\net45\RazorEngine.dll</HintPath>
@@ -421,7 +420,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="obj\Debug\LibraryAutomation.csprojResolveAssemblyReference.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="packages.config" />
@@ -477,23 +475,17 @@
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.77.0.3865.4000\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.77.0.3865.4000\build\Selenium.WebDriver.ChromeDriver.targets')" />
   <Import Project="packages\Selenium.WebDriver.ChromeDriver.83.0.4103.3910\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('packages\Selenium.WebDriver.ChromeDriver.83.0.4103.3910\build\Selenium.WebDriver.ChromeDriver.targets')" />
   <Import Project="packages\Selenium.Firefox.WebDriver.0.26.0\build\Selenium.Firefox.WebDriver.targets" Condition="Exists('packages\Selenium.Firefox.WebDriver.0.26.0\build\Selenium.Firefox.WebDriver.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('packages\Microsoft.CodeAnalysis.Analyzers.3.3.0\build\Microsoft.CodeAnalysis.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeAnalysis.Analyzers.3.3.0\build\Microsoft.CodeAnalysis.Analyzers.props'))" />
-    <Error Condition="!Exists('packages\Microsoft.CodeAnalysis.Analyzers.3.3.0\build\Microsoft.CodeAnalysis.Analyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeAnalysis.Analyzers.3.3.0\build\Microsoft.CodeAnalysis.Analyzers.targets'))" />
-    <Error Condition="!Exists('packages\Microsoft.Extensions.Configuration.UserSecrets.3.1.7\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Extensions.Configuration.UserSecrets.3.1.7\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.props'))" />
-    <Error Condition="!Exists('packages\Microsoft.Extensions.Configuration.UserSecrets.3.1.7\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Extensions.Configuration.UserSecrets.3.1.7\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.targets'))" />
-    <Error Condition="!Exists('packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets'))" />
-    <Error Condition="!Exists('packages\MongoDB.Driver.Core.2.11.0\build\MongoDB.Driver.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MongoDB.Driver.Core.2.11.0\build\MongoDB.Driver.Core.targets'))" />
-    <Error Condition="!Exists('packages\Selenium.WebDriver.ChromeDriver.89.0.4389.2300\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Selenium.WebDriver.ChromeDriver.89.0.4389.2300\build\Selenium.WebDriver.ChromeDriver.targets'))" />
-  </Target>
   <Import Project="packages\Microsoft.CodeAnalysis.Analyzers.3.3.0\build\Microsoft.CodeAnalysis.Analyzers.targets" Condition="Exists('packages\Microsoft.CodeAnalysis.Analyzers.3.3.0\build\Microsoft.CodeAnalysis.Analyzers.targets')" />
   <Import Project="packages\Microsoft.Extensions.Configuration.UserSecrets.3.1.7\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.targets" Condition="Exists('packages\Microsoft.Extensions.Configuration.UserSecrets.3.1.7\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.targets')" />
   <Import Project="packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets" Condition="Exists('packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets')" />
   <Import Project="packages\MongoDB.Driver.Core.2.11.0\build\MongoDB.Driver.Core.targets" Condition="Exists('packages\MongoDB.Driver.Core.2.11.0\build\MongoDB.Driver.Core.targets')" />
-  <Import Project="packages\Selenium.WebDriver.ChromeDriver.89.0.4389.2300\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('packages\Selenium.WebDriver.ChromeDriver.89.0.4389.2300\build\Selenium.WebDriver.ChromeDriver.targets')" />
+  <Import Project="packages\Selenium.WebDriver.ChromeDriver.95.0.4638.6900\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('packages\Selenium.WebDriver.ChromeDriver.95.0.4638.6900\build\Selenium.WebDriver.ChromeDriver.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Selenium.WebDriver.ChromeDriver.95.0.4638.6900\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Selenium.WebDriver.ChromeDriver.95.0.4638.6900\build\Selenium.WebDriver.ChromeDriver.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
